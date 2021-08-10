@@ -3,11 +3,11 @@ import { IProject } from '../interfaces/project.interface';
 import { ICircle } from '../interfaces/circle.interface';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  selector: 'app-project',
+  templateUrl: './project.component.html',
+  styleUrls: ['./project.component.css']
 })
-export class ProjectsComponent implements IProject {
+export class ProjectComponent implements IProject {
   id!: string;
   name!: string;
   circles!: ICircle[];

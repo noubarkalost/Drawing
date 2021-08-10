@@ -6,6 +6,7 @@ import { CanvasComponent } from './canvas/canvas.component';
 import { CirclesComponent } from './circles/circles.component';
 import { CircleComponent } from './circle/circle.component';
 import { ProjectComponent } from './project/project.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,7 +18,11 @@ import { ProjectComponent } from './project/project.component';
   ],
   imports: [
     CommonModule,
-    PaintRoutingModule
+    PaintRoutingModule,
+    FormsModule
+  ],
+  exports:[
+    CanvasComponent
   ]
 })
 export class PaintModule { }
