@@ -76,6 +76,10 @@ export class CanvasComponent implements OnInit {
   newId(): string {
     return String(Date.now());
   }
+  onGenerate(): void {
+    this.resetColors();
+    this.projectName = '';
+  }
 
   onSave(): void {
     if (this.isEmpty(this.circles) || !this.projectName) {
