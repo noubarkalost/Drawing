@@ -32,6 +32,8 @@ export class CanvasComponent implements OnInit {
   clickAudio: any = new Audio('./assets/sounds/click.wav')
   generateAudio: any = new Audio('./assets/sounds/generate.wav')
   saveAudio: any = new Audio('./assets/sounds/save.wav')
+  resetAudio: any = new Audio('./assets/sounds/reset.wav')
+  fillAudio: any = new Audio('./assets/sounds/fill.wav')
 
 
   constructor(private storage: LocalstorageService) { }
@@ -62,6 +64,7 @@ export class CanvasComponent implements OnInit {
     }
     this.resetIsDisabled = true
     this.fillIsDisabled = false
+    this.resetAudio.play()
   }
 
   resetColors(): void {
@@ -74,6 +77,7 @@ export class CanvasComponent implements OnInit {
   }
 
   onFillCircles(): void {
+    this.fillAudio.play()
     this.resetIsDisabled = false
     this.fillIsDisabled = true
     if (this.isEmpty(this.circles)) {

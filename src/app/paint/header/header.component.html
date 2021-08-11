@@ -2,10 +2,13 @@
   <div class="message-header">
     <figure class="image is-64x64">
       <div class="flex-container">
-      <img class="is-rounded" src="assets/Avatars/gentelman.png" alt="User Avatar">
-        <ng-content></ng-content>
+        <img class="is-rounded" src="assets/Avatars/gentelman.png" alt="User Avatar">
+        <div class="is-center">
+            <ng-content></ng-content>
+          <br>
+          <a routerLink="/"> <strong>SignOut</strong> </a>
+          </div>
       </div>
-
     </figure>
   </div>
 </article>

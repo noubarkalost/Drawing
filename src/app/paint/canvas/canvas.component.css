@@ -93,18 +93,6 @@
   margin: 10px 10px 60px auto;
 }
 
-
-
-/*.projects-container {*/
-/*  display: flex;*/
-/*  flex-flow: row wrap;*/
-/*  justify-content: flex-start;*/
-/*  align-items: flex-start;*/
-/*  min-height: 40px;*/
-/*}*/
-
-
-
 .projects-container{
   display: flex ;
   flex-wrap: wrap;
