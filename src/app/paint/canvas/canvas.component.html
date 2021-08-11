@@ -3,14 +3,14 @@
 </app-header>
 <div class="button-container">
 
-  <button class="button is-rounded is-danger"
+  <button class="button is-rounded is-danger" [disabled]="resetIsDisabled"
           (click)="onResetColor()">Reset
   </button>
-  <button class="button is-rounded is-warning"
+  <button class="button is-rounded is-warning" [disabled]="fillIsDisabled"
           (click)="onFillCircles()">Fill all
   </button>
-  <button class="button is-rounded is-outlined is-primary"
-          (click)="onSave()">Save Existing
+  <button class="button is-rounded is-outlined is-primary" [disabled]="!projectName || saveIsDisabled"
+          (click)="onSave()">Save
   </button>
 
   <button class="button is-danger is-rounded is-outlined" (click)="onDeleteAll()" [disabled]="!(projectList.length >= 2) ">

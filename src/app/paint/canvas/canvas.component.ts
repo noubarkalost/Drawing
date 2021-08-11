@@ -12,6 +12,9 @@ import {LocalstorageService} from "../services/localstorage.service";
   styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit {
+  saveIsDisabled: boolean = false
+  fillIsDisabled: boolean = true
+  resetIsDisabled: boolean = true
   userName: string = 'Noubar'
   circles: ICircle[] = [];
   projectName: string = '';
@@ -39,6 +42,8 @@ export class CanvasComponent implements OnInit {
   }
 
   onCircleClick(circle: ICircle): void {
+    this.resetIsDisabled = false
+    this.fillIsDisabled = false
     if(this.circles[circle.id].color === this.currentColor ){
       this.circles[circle.id].color = "";
     }else {
@@ -51,6 +56,8 @@ export class CanvasComponent implements OnInit {
     if (!this.isEmpty(this.circles)) {
       this.resetColors();
     }
+    this.resetIsDisabled = true
+    this.fillIsDisabled = false
   }
 
   resetColors(): void {
@@ -59,9 +66,12 @@ export class CanvasComponent implements OnInit {
       const c = new CirclesComponent(i,this.newId(),'')
       this.circles.push(c);
     }
+
   }
 
   onFillCircles(): void {
+    this.resetIsDisabled = false
+    this.fillIsDisabled = true
     if (this.isEmpty(this.circles)) {
       return;
     }
@@ -80,9 +90,12 @@ export class CanvasComponent implements OnInit {
   onGenerate(): void {
     this.resetColors();
     this.projectName = '';
+    this.fillIsDisabled = false
+    this.resetIsDisabled = true
   }
 
   onSave(): void {
+    this.fillIsDisabled = false
     if (this.isEmpty(this.circles) || !this.projectName) {
       return;
     }
