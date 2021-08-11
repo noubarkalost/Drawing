@@ -64,8 +64,9 @@
     </app-circle>
   </div>
 </div>
+<br>
 
-<div class="projects-container is-parent">
+<div class="projects-container is-parent" *ngIf="projectList.length">
   <div class="project">
   <div  *ngFor="let project of projectList; let i = index"
        (click)="selectProject(project)">
