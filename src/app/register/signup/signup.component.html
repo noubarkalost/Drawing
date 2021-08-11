@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="card card-container">
+  <div class="columns is-centered">
+    <div class="signup-container">
     <form class="card-content" [formGroup]="$any(form)" (ngSubmit)="onSubmit()">
       <div class="columns">
         <div class="column">
@@ -40,13 +41,14 @@
           </div>
         </div>
       </div>
-      <div class="button-container">
-        <button class="button is-rounded is-success " type="submit" [disabled]="password()" (click)="onSubmit()">Sign Up
-        </button>
-        <button class="button is-rounded is-link" routerLink="/login">Log in
+
+        <button class="button is-rounded is-success is-centered " type="submit" [disabled]="password()" (click)="onSubmit()">Sign Up
         </button>
 
-      </div>
-    </form>
-  </div>
+         </form>
+      <a class="is-centered">Already user : </a>
+      <a routerLink="/login"> <strong> Login </strong>  </a>
+</div>
+
+</div>
 </div>
