@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="signup-container">
+      <form class="card-content" [formGroup]="$any(form)" >
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['name']" inputType="text"
+                                label="Name"></app-validation-msg>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['lastName']" inputType="text"
+                                label="Last Name"></app-validation-msg>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['phoneNumber']" inputType="text"
+                                label="Phone Number"></app-validation-msg>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['email']" inputType="email"
+                                label="Email"></app-validation-msg>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['password']" inputType="password"
+                                label="Password"></app-validation-msg>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['confirmPassword']" inputType="password"
+                                label="Confirm Password"></app-validation-msg>
+            <div *ngIf="$any(form).controls['confirmPassword'].value && password()">
+              <p class="help is-danger"> Passwords did not match </p>
+            </div>
+          </div>
+        </div>
+
+        <button class="button is-rounded is-success is-centered " type="submit" [disabled]="password()"
+                (click)="onSignUp()">Sign Up
+        </button>
+
+      </form>
+      <p class="is-centered">Already user :
+      <a routerLink="/"> <strong> Login </strong> </a>
+    </div>
+  </div>
+</div>

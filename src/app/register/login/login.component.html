@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="signup-container">
+      <form class="card-content" [formGroup]="$any(form)" (ngSubmit)="onLogIn()">
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['email']" inputType="email"
+                                label="Email"></app-validation-msg>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <app-validation-msg [control]="$any(form).controls['password']" inputType="password"
+                                label="Password"></app-validation-msg>
+          </div>
+        </div>
+        <button class="button is-rounded is-link is-centered " type="submit" [routerLink]="onLogIn()" [disabled]="password()"
+                >Log In
+        </button>
+
+      </form>
+      <p class="is-centered">New here :
+        <a routerLink="/register"> <strong> Sign up for free </strong> </a>
+    </div>
+  </div>
+</div>
