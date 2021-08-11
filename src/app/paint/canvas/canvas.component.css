@@ -26,22 +26,6 @@
 
 }
 
-.projects-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  min-height: 40px;
-}
-
-.project {
-  display: flex;
-  margin-left: 5px;
-  padding: 2px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-
 .circles-container.container-100 {
   width: 270px;
 }
@@ -101,7 +85,73 @@
 .container{
   justify-content: center;
 }
+
+
+
 .btn-container{
   justify-content: center;
   margin: 10px 10px 60px auto;
 }
+
+
+
+/*.projects-container {*/
+/*  display: flex;*/
+/*  flex-flow: row wrap;*/
+/*  justify-content: flex-start;*/
+/*  align-items: flex-start;*/
+/*  min-height: 40px;*/
+/*}*/
+
+
+
+.projects-container{
+  display: flex ;
+  flex-wrap: wrap;
+  padding: 50px 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.project{
+
+  transform: scaleX(1);
+  cursor: pointer;
+  transition: all .3s ease;
+  display: flex;
+  margin-left: 5px;
+  padding: 2px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+.project:hover {
+  transform: scaleX(1.02);
+}
+.content {
+  padding: 20px;
+  margin: 10px auto;
+}
+
+@media only screen and (max-width: 1330px) {
+  .projects-container {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+  }
+}
+
+
+@media only screen and (max-width: 740px) {
+
+  .projects-container {
+    width: 100%;
+    margin-bottom: 20px;
+
+  }
+  .project{
+    display: initial;
+  }
+
+
+
+}
+

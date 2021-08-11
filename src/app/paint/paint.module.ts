@@ -8,7 +8,7 @@ import { CircleComponent } from './circle/circle.component';
 import { ProjectComponent } from './project/project.component';
 import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
-import { SavedComponent } from './saved/saved.component';
+
 
 
 @NgModule({
@@ -18,7 +18,6 @@ import { SavedComponent } from './saved/saved.component';
     CircleComponent,
     ProjectComponent,
     HeaderComponent,
-    SavedComponent
   ],
   imports: [
     CommonModule,

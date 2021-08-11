@@ -65,15 +65,17 @@
   </div>
 </div>
 
-
-<app-saved>
-  <div *ngFor="let project of projectList; let i = index"
+<div class="projects-container is-parent">
+  <div class="project">
+  <div  *ngFor="let project of projectList; let i = index"
        (click)="selectProject(project)">
-    <article class="tile is-child notification is-link">
+    <div class="content ">
+    <article class=" is-child notification is-link">
       <button class="delete" (click)="onDeleteProject(i)"> Remove</button>
       <p class="title">{{project.name}} </p>
       <p class="subtitle"> Created with circle count: {{project.circles.length}} </p>
     </article>
+    </div>
   </div>
-</app-saved>
-
+  </div>
+</div>
