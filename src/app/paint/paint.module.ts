@@ -7,6 +7,7 @@ import { CirclesComponent } from './circles/circles.component';
 import { CircleComponent } from './circle/circle.component';
 import { ProjectComponent } from './project/project.component';
 import {FormsModule} from "@angular/forms";
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {FormsModule} from "@angular/forms";
     CanvasComponent,
     CirclesComponent,
     CircleComponent,
-    ProjectComponent
+    ProjectComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

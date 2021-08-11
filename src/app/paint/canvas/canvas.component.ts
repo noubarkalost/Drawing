@@ -12,6 +12,7 @@ import {LocalstorageService} from "../services/localstorage.service";
   styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit {
+  userName: string = 'Noubar'
   circles: ICircle[] = [];
   projectName: string = '';
   projectList: IProject[] = [];

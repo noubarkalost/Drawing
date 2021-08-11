@@ -1,0 +1,11 @@
+.flex-container{
+  display: flex;
+  width: 150px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.image img.is-rounded{
+  margin-right: 5px;
+  margin-left: 5px;
+
+}
