@@ -13,11 +13,11 @@ export class LoginComponent  {
   })
 
   password(){
-
+    // console.log(this.form.controls[0].value)
 
   }
   onLogIn() {
-    console.log(this.form.controls[0].value)
+  return "/Draw"
   }
 
 
