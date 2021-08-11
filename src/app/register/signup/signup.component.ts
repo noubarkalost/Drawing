@@ -38,7 +38,9 @@ export class SignupComponent implements OnInit {
 
 
   onSignUp() {
-    console.log(this.form.controls[this.currentForm].value)
+    console.log(this.form.controls.name.value)
+    console.log(this.form.controls.password.value)
+    console.log(this.form.controls.email.value)
   }
 
 }
