@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  imageSRC: string = "assets/Avatars/gentelman.png";
   currentForm: number = 0
   form = new FormGroup({
     name: new FormControl('', [
@@ -23,7 +24,6 @@ export class SignupComponent {
     confirmPassword: new FormControl('', Validators.required),
   })
 
-
   password() {
     const password = this.form.controls[this.currentForm]?.get('password')?.value
     const confirmedPassword = this.form.controls[this.currentForm]?.get('confirmPassword')?.value
@@ -34,6 +34,14 @@ export class SignupComponent {
     console.log(this.form.controls.name.value)
     console.log(this.form.controls.password.value)
     console.log(this.form.controls.email.value)
+  }
+  changeImage(){
+    if(this.imageSRC ===  "assets/Avatars/gentelman.png"){
+      this.imageSRC = "assets/Avatars/lady.png"
+    }
+    else{
+      this.imageSRC = this.imageSRC = "assets/Avatars/gentelman.png"
+    }
   }
 
 }
