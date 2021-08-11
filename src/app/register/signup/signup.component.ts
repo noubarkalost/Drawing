@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {LocalstorageService} from "../../paint/services/localstorage.service";
+import {IUsers} from "../../paint/interfaces/users.interface";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
-  currentForm: number = 0
+export class SignupComponent implements OnInit{
+  counter = 1;
+  index: number = 0;
+  usersList: IUsers[] = [];
+  usersListName = 'usersList'
+  constructor(private storage: LocalstorageService) { }
+  ngOnInit(): void {
+    this.getUsers();
+  }
+  imageSRC: string = "assets/Avatars/gentelman.png";
   form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -23,17 +33,36 @@ export class SignupComponent {
     confirmPassword: new FormControl('', Validators.required),
   })
 
-
   password() {
-    const password = this.form.controls[this.currentForm]?.get('password')?.value
-    const confirmedPassword = this.form.controls[this.currentForm]?.get('confirmPassword')?.value
-    return password !== confirmedPassword;
+    const password = this.form.controls.password.value
+    const confirmedPassword = this.form.controls.confirmPassword.value
+    if(password && confirmedPassword){
+      return password === confirmedPassword;
+    }
+    return false
+  }
+  getUsers(): void {
+    const users = this.storage.get(this.usersListName);
+    if (users) {
+      this.usersList = JSON.parse(users);
+    }
   }
 
   onSignUp() {
-    console.log(this.form.controls.name.value)
-    console.log(this.form.controls.password.value)
-    console.log(this.form.controls.email.value)
+     if(this.form.valid) {
+      this.usersList.push(this.form.value);
+      const usersListStr = JSON.stringify(this.usersList)
+      this.storage.set(this.usersListName, usersListStr)
+    }
+  }
+
+  changeImage(){
+    if(this.imageSRC ===  "assets/Avatars/gentelman.png"){
+      this.imageSRC = "assets/Avatars/lady.png"
+    }
+    else{
+      this.imageSRC = this.imageSRC = "assets/Avatars/gentelman.png"
+    }
   }
 
 }

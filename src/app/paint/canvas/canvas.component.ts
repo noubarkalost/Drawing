@@ -5,6 +5,7 @@ import {CirclesComponent} from "../circles/circles.component";
 import {IProject} from "../interfaces/project.interface";
 import {ProjectComponent} from "../project/project.component";
 import {LocalstorageService} from "../services/localstorage.service";
+import {IUsers} from "../interfaces/users.interface";
 
 @Component({
   selector: 'app-canvas',
@@ -20,6 +21,7 @@ export class CanvasComponent implements OnInit {
   projectName: string = '';
   projectList: IProject[] = [];
   projectListName = 'circlesProject';
+  usersList: IUsers[] = [];
   canvasSizes: number[] = [
     ECircleCount.MIN, // 100
     ECircleCount.MID, // 225
@@ -109,14 +111,14 @@ export class CanvasComponent implements OnInit {
     if (this.isEmpty(this.circles) || !this.projectName) {
       return;
     }
-    const p = new ProjectComponent(this.newId(), this.projectName, this.circles);
+    const project = new ProjectComponent(this.newId(), this.projectName, this.circles);
     let indexKey;
     for(let i= 0; i< this.projectList.length; i++){
       if(this.projectList[i].id === this.id){
         this.projectList.splice(i,1);
       }
     }
-    this.projectList.splice(indexKey||this.projectList.length,0,p)
+    this.projectList.splice(indexKey||this.projectList.length,0,project)
     this.setStorage();
     this.projectName='';
     this.circles = [];

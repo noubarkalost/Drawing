@@ -14,7 +14,7 @@
                                 label="Password"></app-validation-msg>
           </div>
         </div>
-        <button class="button is-rounded is-link is-centered " type="submit" [routerLink]="onLogIn()" [disabled]="password()"
+        <button  class="button is-rounded is-link is-centered " type="submit" (click)="onLogIn()" [disabled]="password()"
                 >Log In
         </button>
 

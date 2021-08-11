@@ -8,6 +8,12 @@
   border-radius: 30px;
   background-color: aliceblue;
   border: 1px solid #000000;
+  transform: scaleX(1);
+  cursor: pointer;
+  transition: all .3s ease;
+  margin-left: 5px;
+  margin-bottom: 5px;
+
 }
 
 .circle {
@@ -15,9 +21,9 @@
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   border-radius: 20px;
+
 }
 
-.circle-wrapper {
-  margin-left: 5px;
-  margin-bottom: 5px;
+.circle-wrapper:hover {
+  transform:scale3d(1.08, 1.08,1.08);
 }
