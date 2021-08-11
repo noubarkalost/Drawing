@@ -5,6 +5,7 @@ import {CirclesComponent} from "../circles/circles.component";
 import {IProject} from "../interfaces/project.interface";
 import {ProjectComponent} from "../project/project.component";
 import {LocalstorageService} from "../services/localstorage.service";
+import {IUsers} from "../interfaces/users.interface";
 
 @Component({
   selector: 'app-canvas',
@@ -20,6 +21,7 @@ export class CanvasComponent implements OnInit {
   projectName: string = '';
   projectList: IProject[] = [];
   projectListName = 'circlesProject';
+  usersList: IUsers[] = [];
   canvasSizes: number[] = [
     ECircleCount.MIN, // 100
     ECircleCount.MID, // 225

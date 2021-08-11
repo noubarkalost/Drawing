@@ -44,7 +44,7 @@ export class LoginComponent  {
     signInUser.map((info: { email: string; password: string })=>{
       if(info.email === this.form.controls.email.value && info.password === this.form.controls.password.value && this.form.valid){
         this.userInfo.userEmail = info.email;
-        this.router.navigate(['/Draw'])
+        this.router.navigate(['/Draw']).then(r=>r)
       } else {
         this.checkInputs = true;
       }
