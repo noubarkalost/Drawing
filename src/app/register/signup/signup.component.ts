@@ -25,8 +25,8 @@ export class SignupComponent {
   })
 
   password() {
-    const password = this.form.controls[this.currentForm]?.get('password')?.value
-    const confirmedPassword = this.form.controls[this.currentForm]?.get('confirmPassword')?.value
+    const password = this.form.controls.password.value
+    const confirmedPassword = this.form.controls.confirmPassword.value
     return password !== confirmedPassword;
   }
 
