@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  onSignUp() {
     console.log(this.form.controls[this.currentForm].value)
   }
 
