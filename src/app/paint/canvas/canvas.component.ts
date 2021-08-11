@@ -29,6 +29,9 @@ export class CanvasComponent implements OnInit {
   currentColor: string = '#000';
   pointer: string = 'all';
   id!: string;
+  clickAudio: any = new Audio('./assets/sounds/click.wav')
+  generateAudio: any = new Audio('./assets/sounds/generate.wav')
+  saveAudio: any = new Audio('./assets/sounds/save.wav')
 
 
   constructor(private storage: LocalstorageService) { }
@@ -42,6 +45,7 @@ export class CanvasComponent implements OnInit {
   }
 
   onCircleClick(circle: ICircle): void {
+    this.clickAudio.play()
     this.resetIsDisabled = false
     this.fillIsDisabled = false
     if(this.circles[circle.id].color === this.currentColor ){
@@ -88,6 +92,7 @@ export class CanvasComponent implements OnInit {
     return String(Date.now());
   }
   onGenerate(): void {
+    this.generateAudio.play()
     this.resetColors();
     this.projectName = '';
     this.fillIsDisabled = false
@@ -95,6 +100,7 @@ export class CanvasComponent implements OnInit {
   }
 
   onSave(): void {
+    this.saveAudio.play()
     this.fillIsDisabled = false
     if (this.isEmpty(this.circles) || !this.projectName) {
       return;
