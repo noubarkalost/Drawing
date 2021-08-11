@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -6,14 +6,12 @@ import {FormControl} from "@angular/forms";
   templateUrl: './validation-msg.component.html',
   styleUrls: ['./validation-msg.component.css']
 })
-export class ValidationMsgComponent implements OnInit {
+export class ValidationMsgComponent {
   @Input() control!: FormControl
   @Input() inputType!: string;
   @Input() label!: string;
   constructor() { }
 
-  ngOnInit(): void {
-  }
   showErrors() {
     const dirty = this.control.dirty;
     const touched = this.control.touched;

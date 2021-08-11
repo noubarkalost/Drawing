@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   currentForm: number = 0
   form = new FormGroup({
     name: new FormControl('', [
@@ -29,13 +29,6 @@ export class SignupComponent implements OnInit {
     const confirmedPassword = this.form.controls[this.currentForm]?.get('confirmPassword')?.value
     return password !== confirmedPassword;
   }
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 
   onSignUp() {
     console.log(this.form.controls.name.value)

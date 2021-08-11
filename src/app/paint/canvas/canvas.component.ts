@@ -129,6 +129,16 @@ export class CanvasComponent implements OnInit {
     this.projectName = project.name;
     this.pointer = 'none';
     this.id = project.id
+    if(project.circles.length === 100){
+      this.selectedSize = this.canvasSizes[0];
+    }
+    else if(project.circles.length === 225){
+      this.selectedSize = this.canvasSizes[1];
+    }
+    else{
+      this.selectedSize = this.canvasSizes[2];
+    }
+
   }
 
   onDeleteProject(i: number): void {
