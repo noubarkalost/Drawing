@@ -43,13 +43,13 @@
           <div class="column">
             <app-validation-msg [control]="$any(form).controls['confirmPassword']" inputType="password"
                                 label="Confirm Password"></app-validation-msg>
-            <div *ngIf="$any(form).controls['confirmPassword'].value && password()">
+            <div *ngIf="$any(form).controls['confirmPassword'].value && !password()">
               <p class="help is-danger"> Passwords did not match </p>
             </div>
           </div>
         </div>
 
-        <button class="button is-rounded is-success is-centered " type="submit" [disabled]="password()"
+        <button routerLink="" class="button is-rounded is-success is-centered " type="submit" [disabled]="!(password() && form.valid)"
                 (click)="onSignUp()">Sign Up
         </button>
 
