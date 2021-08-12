@@ -6,6 +6,7 @@ import {IProject} from "../interfaces/project.interface";
 import {ProjectComponent} from "../project/project.component";
 import {LocalstorageService} from "../services/localstorage.service";
 import {IUsers} from "../interfaces/users.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-canvas',
@@ -13,6 +14,7 @@ import {IUsers} from "../interfaces/users.interface";
   styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit {
+  currentUser!: string;
   saveIsDisabled: boolean = false
   fillIsDisabled: boolean = true
   resetIsDisabled: boolean = true
@@ -38,7 +40,7 @@ export class CanvasComponent implements OnInit {
   fillAudio: any = new Audio('./assets/sounds/fill.wav')
 
 
-  constructor(private storage: LocalstorageService) { }
+  constructor(private storage: LocalstorageService,  private router:Router) { }
 
   ngOnInit(): void {
     this.getProjects();
@@ -104,14 +106,13 @@ export class CanvasComponent implements OnInit {
     this.fillIsDisabled = false
     this.resetIsDisabled = true
   }
-
   onSave(): void {
     this.saveAudio.play()
     this.fillIsDisabled = false
     if (this.isEmpty(this.circles) || !this.projectName) {
       return;
     }
-    const project = new ProjectComponent(this.newId(), this.projectName, this.circles);
+    const project = new ProjectComponent(this.currentUser,this.newId(), this.projectName, this.circles);
     let indexKey;
     for(let i= 0; i< this.projectList.length; i++){
       if(this.projectList[i].id === this.id){
@@ -130,11 +131,21 @@ export class CanvasComponent implements OnInit {
   }
 
   getProjects(): void {
+    const currentUserStr = this.storage.get('loggedInUser');
     const projects = this.storage.get(this.projectListName);
-    if (projects) {
-      this.projectList = JSON.parse(projects);
+    if(currentUserStr){
+      this.currentUser = currentUserStr
+    } else {
+      this.router.navigate(['/']).then(r=>r)
     }
+    if (projects) {
+      this.projectList = JSON.parse(projects).filter((project:any)=> project.user === this.currentUser)
+
+    }
+
+
   }
+
 
   selectProject(project: IProject): void {
     this.circles = project.circles;

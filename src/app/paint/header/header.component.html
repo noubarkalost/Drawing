@@ -4,12 +4,13 @@
       <div class="flex-container">
         <img class="is-rounded" src="assets/Avatars/gentelman.png" alt="User Avatar">
         <div class="is-center">
-            <ng-content></ng-content>
+          <p> {{userName}}</p>
           <br>
-          <a routerLink="/"> <strong>SignOut</strong> </a>
+          <a routerLink="" (click)="signOut()"> <strong>SignOut</strong> </a>
           </div>
       </div>
     </figure>
   </div>
 </article>
+
 

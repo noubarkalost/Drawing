@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocalstorageService} from "../../paint/services/localstorage.service";
 import {IUsers} from "../../paint/interfaces/users.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -13,9 +14,12 @@ export class SignupComponent implements OnInit{
   index: number = 0;
   usersList: IUsers[] = [];
   usersListName = 'usersList'
-  constructor(private storage: LocalstorageService) { }
+  constructor(private storage: LocalstorageService, private router:Router) { }
   ngOnInit(): void {
     this.getUsers();
+    if(this.storage.get('loggedInUser')?.length) {
+      this.router.navigate(['/Draw']).then(r=>r)
+    }
   }
   imageSRC: string = "assets/Avatars/gentelman.png";
   form = new FormGroup({
@@ -49,7 +53,7 @@ export class SignupComponent implements OnInit{
   }
 
   onSignUp() {
-     if(this.form.valid) {
+    if(this.form.valid) {
       this.usersList.push(this.form.value);
       const usersListStr = JSON.stringify(this.usersList)
       this.storage.set(this.usersListName, usersListStr)
