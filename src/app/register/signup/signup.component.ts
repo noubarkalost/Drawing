@@ -10,8 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit{
-  counter = 1;
-  index: number = 0;
+  imageSRC: string = "assets/Avatars/gentelman.png";
   usersList: IUsers[] = [];
   usersListName = 'usersList'
   constructor(private storage: LocalstorageService, private router:Router) { }
@@ -22,7 +21,7 @@ export class SignupComponent implements OnInit{
 
     }
   }
-  imageSRC: string = "assets/Avatars/gentelman.png";
+
   form = new FormGroup({
     name: new FormControl('', [
       Validators.required,

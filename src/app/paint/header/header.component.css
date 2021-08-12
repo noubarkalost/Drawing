@@ -11,6 +11,12 @@
   margin-bottom: 5px;
   width: 100%;
   flex-wrap: wrap;
+  transform: scaleX(1);
+  cursor: pointer;
+  transition: all .3s ease;
 }
 
 
+.image:hover {
+  transform:scale3d(1.08, 1.08,1.08);
+}
