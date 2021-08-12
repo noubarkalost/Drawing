@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IUsers} from "../../paint/interfaces/users.interface";
 import {LocalstorageService} from "../../paint/services/localstorage.service";
@@ -10,7 +10,7 @@ import {UserinfoService} from "../../paint/services/userinfo.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent  {
+export class LoginComponent implements OnInit {
 
   constructor( private storage: LocalstorageService, private router: Router, public userInfo: UserinfoService) { }
   counter = 1;
@@ -18,6 +18,11 @@ export class LoginComponent  {
   usersList: IUsers[] = [];
   usersListName = 'usersList';
   checkInputs: boolean = false;
+  ngOnInit(): void {
+    if(this.storage.get('loggedInUser')?.length) {
+      this.router.navigate(['/Draw']).then(r=>r)
+    }
+  }
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required]),
@@ -45,6 +50,7 @@ export class LoginComponent  {
       if(info.email === this.form.controls.email.value && info.password === this.form.controls.password.value && this.form.valid){
         this.userInfo.userEmail = info.email;
         this.router.navigate(['/Draw']).then(r=>r)
+        this.storage.set('loggedInUser',info.email);
       } else {
         this.checkInputs = true;
       }
