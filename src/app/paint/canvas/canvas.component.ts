@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit {
+  currentUser!: string;
   saveIsDisabled: boolean = false
   fillIsDisabled: boolean = true
   resetIsDisabled: boolean = true
@@ -40,7 +41,7 @@ export class CanvasComponent implements OnInit {
   currentUser!: string;
 
 
-  constructor(private storage: LocalstorageService, private router:Router) { }
+  constructor(private storage: LocalstorageService,  private router:Router) { }
 
   ngOnInit(): void {
     this.getProjects();
@@ -106,7 +107,6 @@ export class CanvasComponent implements OnInit {
     this.fillIsDisabled = false
     this.resetIsDisabled = true
   }
-
   onSave(): void {
     this.saveAudio.play()
     this.fillIsDisabled = false
@@ -146,6 +146,7 @@ export class CanvasComponent implements OnInit {
 
 
   }
+
 
   selectProject(project: IProject): void {
     this.circles = project.circles;

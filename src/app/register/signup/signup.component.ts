@@ -18,7 +18,8 @@ export class SignupComponent implements OnInit{
   ngOnInit(): void {
     this.getUsers();
     if(this.storage.get('loggedInUser')?.length) {
-      this.router.navigate(['/painting']).then(r=>r)
+      this.router.navigate(['/Draw']).then(r=>r)
+
     }
   }
   imageSRC: string = "assets/Avatars/gentelman.png";
@@ -53,7 +54,7 @@ export class SignupComponent implements OnInit{
   }
 
   onSignUp() {
-     if(this.form.valid) {
+    if(this.form.valid) {
       this.usersList.push(this.form.value);
       const usersListStr = JSON.stringify(this.usersList)
       this.storage.set(this.usersListName, usersListStr)

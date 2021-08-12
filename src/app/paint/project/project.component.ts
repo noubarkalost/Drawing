@@ -20,4 +20,5 @@ export class ProjectComponent implements IProject {
     this.circles = circles
   }
 
+
 }

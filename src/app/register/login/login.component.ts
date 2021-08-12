@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
   checkInputs: boolean = false;
   ngOnInit(): void {
     if(this.storage.get('loggedInUser')?.length) {
-      this.router.navigate(['/Draw']).then(r=>r)
+
+      this.router.navigate(['/Draw'])
+
     }
   }
 
@@ -37,20 +39,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  password(){
-    // console.log(this.form.controls[0].value)
-
-  }
   onLogIn() {
     const signInUser = this.getUserInfo();
     if(!signInUser){
       this.checkInputs = true;
     }
-    signInUser.map((info: { email: string; password: string })=>{
+    signInUser.map((info: { email: string; password: string , name:string })=>{
       if(info.email === this.form.controls.email.value && info.password === this.form.controls.password.value && this.form.valid){
         this.userInfo.userEmail = info.email;
         this.router.navigate(['/Draw']).then(r=>r)
         this.storage.set('loggedInUser',info.email);
+
+        this.storage.set('userName',info.name);
+
       } else {
         this.checkInputs = true;
       }
