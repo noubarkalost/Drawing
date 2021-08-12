@@ -2,7 +2,7 @@
   <div class="message-header">
     <figure class="image is-64x64">
       <div class="flex-container">
-        <img class="is-rounded" src="assets/Avatars/gentelman.png" alt="User Avatar">
+        <img class="is-rounded" [src]="imageSRC" alt="User Avatar" (click)="changeImage()">
         <div class="is-center">
           <p> {{userName}}</p>
           <br>

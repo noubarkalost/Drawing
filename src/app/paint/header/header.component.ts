@@ -1,4 +1,3 @@
-
 import {Component, OnInit} from '@angular/core';
 import {LocalstorageService} from "../services/localstorage.service";
 
@@ -10,6 +9,7 @@ import {LocalstorageService} from "../services/localstorage.service";
 })
 
 export class HeaderComponent implements OnInit{
+  imageSRC: string = "assets/Avatars/gentelman.png";
   userName: string | null = ''
   constructor(private storage:LocalstorageService) { }
   ngOnInit() : void{
@@ -19,6 +19,14 @@ export class HeaderComponent implements OnInit{
     this.storage.set('loggedInUser','');
     this.storage.set('userName', JSON.stringify(undefined));
 
+  }
+  changeImage(){
+    if(this.imageSRC ===  "assets/Avatars/gentelman.png"){
+      this.imageSRC = "assets/Avatars/lady.png"
+    }
+    else{
+      this.imageSRC = this.imageSRC = "assets/Avatars/gentelman.png"
+    }
   }
 
   }
