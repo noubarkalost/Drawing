@@ -71,7 +71,7 @@
   <div  *ngFor="let project of projectList; let i = index"
        (click)="selectProject(project)">
     <div class="content ">
-    <article class=" is-child notification is-link">
+    <article *ngIf="currentUser === project.user" class=" is-child notification is-link">
       <button class="delete" (click)="onDeleteProject(i)"> Remove</button>
       <p class="title">{{project.name}} </p>
       <p class="subtitle"> Created with circle count: {{project.circles.length}} </p>

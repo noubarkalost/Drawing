@@ -45,6 +45,7 @@ export class CanvasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProjects();
+    this.storage.get("usersList")
   }
 
   onSizeSelect(): void {
@@ -140,7 +141,7 @@ export class CanvasComponent implements OnInit {
       this.router.navigate(['/']).then(r=>r)
     }
     if (projects) {
-      this.projectList = JSON.parse(projects).filter((project:any)=> project.user === this.currentUser)
+      this.projectList = JSON.parse(projects)
 
     }
 
