@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit{
     this.getUsers();
     if(this.storage.get('loggedInUser')?.length) {
       this.router.navigate(['/Draw']).then(r=>r)
+
     }
   }
   imageSRC: string = "assets/Avatars/gentelman.png";

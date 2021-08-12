@@ -8,6 +8,7 @@ import {LocalstorageService} from "../services/localstorage.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit{
   userName: string | null = ''
   constructor(private storage:LocalstorageService) { }
@@ -17,8 +18,10 @@ export class HeaderComponent implements OnInit{
   signOut(){
     this.storage.set('loggedInUser','');
     this.storage.set('userName', JSON.stringify(undefined));
-    console.log("signed out")
+
   }
 
+
+  }
 
 }

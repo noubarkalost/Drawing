@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
   checkInputs: boolean = false;
   ngOnInit(): void {
     if(this.storage.get('loggedInUser')?.length) {
+
       this.router.navigate(['/Draw'])
+
     }
   }
 
@@ -47,7 +49,9 @@ export class LoginComponent implements OnInit {
         this.userInfo.userEmail = info.email;
         this.router.navigate(['/Draw']).then(r=>r)
         this.storage.set('loggedInUser',info.email);
+
         this.storage.set('userName',info.name);
+
       } else {
         this.checkInputs = true;
       }

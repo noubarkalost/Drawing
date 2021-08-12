@@ -38,6 +38,7 @@ export class CanvasComponent implements OnInit {
   saveAudio: any = new Audio('./assets/sounds/save.wav')
   resetAudio: any = new Audio('./assets/sounds/reset.wav')
   fillAudio: any = new Audio('./assets/sounds/fill.wav')
+  currentUser!: string;
 
 
   constructor(private storage: LocalstorageService,  private router:Router) { }
