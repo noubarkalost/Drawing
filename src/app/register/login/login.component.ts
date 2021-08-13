@@ -13,16 +13,12 @@ import {UserinfoService} from "../../paint/services/userinfo.service";
 export class LoginComponent implements OnInit {
 
   constructor( private storage: LocalstorageService, private router: Router, public userInfo: UserinfoService) { }
-  counter = 1;
-  index: number = 0;
   usersList: IUsers[] = [];
   usersListName = 'usersList';
   checkInputs: boolean = false;
   ngOnInit(): void {
     if(this.storage.get('loggedInUser')?.length) {
-
       this.router.navigate(['/Draw'])
-
     }
   }
 
@@ -33,9 +29,8 @@ export class LoginComponent implements OnInit {
 
   getUserInfo() {
     const userStr = this.storage.get(this.usersListName)
-    if(userStr){
-      const user = JSON.parse(userStr);
-      return user;
+    if(userStr?.length){
+      return JSON.parse(userStr);
     }
   }
 
@@ -44,13 +39,12 @@ export class LoginComponent implements OnInit {
     if(!signInUser){
       this.checkInputs = true;
     }
-    signInUser.map((info: { email: string; password: string , name:string })=>{
-      if(info.email === this.form.controls.email.value && info.password === this.form.controls.password.value && this.form.valid){
-        this.userInfo.userEmail = info.email;
+    signInUser.forEach(({email,name,password}: { email: string; password: string , name:string })=>{
+      if(email === this.form.controls.email.value && password === this.form.controls.password.value && this.form.valid){
+        this.userInfo.userEmail = email;
         this.router.navigate(['/Draw']).then(r=>r)
-        this.storage.set('loggedInUser',info.email);
-
-        this.storage.set('userName',info.name);
+        this.storage.set('loggedInUser',email);
+        this.storage.set('userName',name);
 
       } else {
         this.checkInputs = true;
