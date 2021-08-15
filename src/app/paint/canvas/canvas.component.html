@@ -1,22 +1,15 @@
-
-<div class="header-container">
-
+<div class="header-container box">
   <div class="image-container">
     <img [src]="userAvatar" alt="User Avatar">
   </div>
-
   <div class="signout-container">
-    <p> <strong> {{userName}}</strong> </p>
-    <a routerLink=""  (click)="signOut()"> <strong>SignOut</strong> </a>
-
+    <p><strong> {{userName}}</strong></p>
+    <a routerLink="" (click)="signOut()"> <strong>SignOut</strong> </a>
   </div>
-
 </div>
 
 
-
 <div class="button-container">
-
   <button class="button is-rounded is-danger" [disabled]="resetIsDisabled"
           (click)="onResetColor()">Reset
   </button>
@@ -26,7 +19,6 @@
   <button class="button is-rounded is-outlined is-primary" [disabled]="!projectName || saveIsDisabled"
           (click)="onSave()">Save
   </button>
-
   <button class="button is-danger is-rounded is-outlined" (click)="onDeleteAll()"
           [disabled]="!(projectList.length >= 2) ">
     Remove All
@@ -43,7 +35,6 @@
     <input class="picker" type="color"
            [(ngModel)]="currentColor"/>
   </div>
-
   <input class="input is-rounded" type="text" placeholder="Name your project, then you can save it"
          [(ngModel)]="projectName"/>
 
@@ -82,15 +73,15 @@
 
 <div class="projects-container is-parent" *ngIf="projectList.length">
   <div class="project">
-  <div  *ngFor="let project of projectList; let i = index"
-       (click)="selectProject(project)">
-    <div class="content ">
-    <article *ngIf="currentUser === project.user" class=" is-child notification is-link">
-      <button class="delete" (click)="onDeleteProject(i)"> Remove</button>
-      <p class="title">{{project.name}} </p>
-      <p class="subtitle"> Created with circle count: {{project.circles.length}} </p>
-    </article>
+    <div *ngFor="let project of projectList; let i = index"
+         (click)="selectProject(project)">
+      <div class="content ">
+        <article *ngIf="currentUser === project.user" class=" is-child notification is-link">
+          <button class="delete" (click)="onDeleteProject(i)"> Remove</button>
+          <p class="title">{{project.name}} </p>
+          <p class="subtitle"> Created with circle count: {{project.circles.length}} </p>
+        </article>
+      </div>
     </div>
-  </div>
   </div>
 </div>
