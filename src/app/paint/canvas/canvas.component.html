@@ -1,6 +1,20 @@
-<app-header>
 
-</app-header>
+<div class="header-container">
+
+  <div class="image-container">
+    <img [src]="userAvatar" alt="User Avatar">
+  </div>
+
+  <div class="signout-container">
+    <p> <strong> {{userName}}</strong> </p>
+    <a routerLink=""  (click)="signOut()"> <strong>SignOut</strong> </a>
+
+  </div>
+
+</div>
+
+
+
 <div class="button-container">
 
   <button class="button is-rounded is-danger" [disabled]="resetIsDisabled"

@@ -18,7 +18,7 @@ export class CanvasComponent implements OnInit {
   saveIsDisabled: boolean = false
   fillIsDisabled: boolean = true
   resetIsDisabled: boolean = true
-  userName: string = 'Noubar'
+  userName: string | null = ''
   circles: ICircle[] = [];
   projectName: string = '';
   projectList: IProject[] = [];
@@ -38,7 +38,8 @@ export class CanvasComponent implements OnInit {
   saveAudio: any = new Audio('./assets/sounds/save.wav')
   resetAudio: any = new Audio('./assets/sounds/reset.wav')
   fillAudio: any = new Audio('./assets/sounds/fill.wav')
-
+  userAvatar!: string | null;
+  avatarList = []
 
 
   constructor(private storage: LocalstorageService,  private router:Router) { }
@@ -46,6 +47,22 @@ export class CanvasComponent implements OnInit {
   ngOnInit(): void {
     this.getProjects();
     this.storage.get("usersList")
+    const getAvatarList = this.storage.get('avatar')
+    const users = this.storage.get('userName')
+    this.userName = users
+    this.avatarList = JSON.parse(<string>getAvatarList)
+   this.avatarList.map(item => {
+     if(item['name'] === this.userName ){
+       if(item["avatar"] === 'lady'){
+  this.userAvatar = 'assets/Avatars/lady.png'
+       }
+       else{
+         this.userAvatar = 'assets/Avatars/gentelman.png'
+       }
+     }
+
+   } )
+
   }
 
   onSizeSelect(): void {
@@ -175,5 +192,10 @@ export class CanvasComponent implements OnInit {
     this.projectList = [];
     this.storage.removeAll()
     this.circles = [];
+  }
+  signOut(){
+    this.storage.set('loggedInUser','');
+    this.storage.set('userName', JSON.stringify(undefined));
+
   }
 }

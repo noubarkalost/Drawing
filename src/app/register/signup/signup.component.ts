@@ -68,7 +68,6 @@ export class SignupComponent implements OnInit{
       const usersListStr = JSON.stringify(this.usersList)
       const usrAvatar = JSON.stringify(this.userAvatar)
       this.storage.set(this.usersListName, usersListStr)
-
       this.storage.set('avatar', usrAvatar )
       console.log(this.storage.get('avatar'))
     }
@@ -84,7 +83,7 @@ export class SignupComponent implements OnInit{
       this.avatarName = "gentelman"
     }
 
-    console.log(this.avatarName)
+
   }
 
 }

@@ -7,7 +7,7 @@ import { CirclesComponent } from './circles/circles.component';
 import { CircleComponent } from './circle/circle.component';
 import { ProjectComponent } from './project/project.component';
 import {FormsModule} from "@angular/forms";
-import { HeaderComponent } from './header/header.component';
+
 
 
 
@@ -17,7 +17,6 @@ import { HeaderComponent } from './header/header.component';
     CirclesComponent,
     CircleComponent,
     ProjectComponent,
-    HeaderComponent,
   ],
   imports: [
     CommonModule,
