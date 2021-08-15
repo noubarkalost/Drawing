@@ -82,7 +82,6 @@ export class SignupComponent implements OnInit{
       this.avatarName = "gentelman"
     }
 
-
   }
 
 }

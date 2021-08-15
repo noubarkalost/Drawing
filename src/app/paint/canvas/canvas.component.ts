@@ -45,6 +45,9 @@ export class CanvasComponent implements OnInit {
   constructor(private storage: LocalstorageService,  private router:Router) { }
 
   ngOnInit(): void {
+    if(this.storage.get('loggedInUser')?.length) {
+      this.router.navigate(['/Draw']).then(r=>r)
+    }
     this.getProjects();
     this.storage.get("usersList")
     const getAvatarList = this.storage.get('avatar')
