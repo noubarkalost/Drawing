@@ -1,16 +1,15 @@
-<article class="message is-success">
-  <div class="message-header">
-    <figure class="image is-64x64">
-      <div class="flex-container">
-        <img class="is-rounded" [src]="imageSRC" alt="User Avatar" (click)="changeImage()">
-        <div class="is-center">
-          <p> {{userName}}</p>
-          <br>
-          <a routerLink="" (click)="signOut()"> <strong>SignOut</strong> </a>
-          </div>
+<div class="header-container">
+
+      <div class="image-container">
+        <img [src]="imageSRC" alt="User Avatar">
       </div>
-    </figure>
-  </div>
-</article>
+
+<div class="signout-container">
+  <p> <strong> {{userName}}</strong> </p>
+  <a routerLink="" (click)="signOut()"> <strong>SignOut</strong> </a>
+
+</div>
+
+</div>
 
 

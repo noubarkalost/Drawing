@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit{
+  avatarName: string = "gentelman"
+  avatar = "avatar"
+  userAvatar = []
   imageSRC: string = "assets/Avatars/gentelman.png";
   usersList: IUsers[] = [];
   usersListName = 'usersList'
@@ -18,10 +21,15 @@ export class SignupComponent implements OnInit{
     this.getUsers();
     if(this.storage.get('loggedInUser')?.length) {
       this.router.navigate(['/Draw']).then(r=>r)
-
+    }
+    this.getAvatar()
+  }
+  getAvatar(){
+   const avatars = this.storage.get('avatar')
+    if (typeof avatars === "string") {
+      this.userAvatar = JSON.parse(avatars)
     }
   }
-
   form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -55,18 +63,28 @@ export class SignupComponent implements OnInit{
   onSignUp() {
     if(this.form.valid) {
       this.usersList.push(this.form.value);
+      // @ts-ignore
+      this.userAvatar.push({avatar: this.avatarName, name:this.form.controls.name.value});
       const usersListStr = JSON.stringify(this.usersList)
+      const usrAvatar = JSON.stringify(this.userAvatar)
       this.storage.set(this.usersListName, usersListStr)
+
+      this.storage.set('avatar', usrAvatar )
+      console.log(this.storage.get('avatar'))
     }
   }
 
   changeImage(){
     if(this.imageSRC ===  "assets/Avatars/gentelman.png"){
       this.imageSRC = "assets/Avatars/lady.png"
+      this.avatarName = "lady"
     }
     else{
-      this.imageSRC = this.imageSRC = "assets/Avatars/gentelman.png"
+      this.imageSRC = "assets/Avatars/gentelman.png"
+      this.avatarName = "gentelman"
     }
+
+    console.log(this.avatarName)
   }
 
 }

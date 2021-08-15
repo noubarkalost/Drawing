@@ -142,10 +142,7 @@ export class CanvasComponent implements OnInit {
     }
     if (projects) {
       this.projectList = JSON.parse(projects)
-
     }
-
-
   }
 
 
