@@ -92,12 +92,12 @@ export class SignupComponent implements OnInit{
     const existingEmail = this.form.controls.email.value
      this.usersList.forEach(item => {
       if(existingEmail === item.email){
-     this.emailExist = true
+        this.emailExist = true
         this.email = existingEmail
     }
-      else{
-       this.emailExist = false
-      }
+      // else{
+      //  this.emailExist = false
+      // }
       })
 
 
