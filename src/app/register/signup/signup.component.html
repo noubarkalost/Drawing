@@ -31,7 +31,12 @@
           <div class="column">
             <app-validation-msg [control]="$any(form).controls['email']" inputType="email"
                                 label="Email"></app-validation-msg>
+            <div class="help is-danger" *ngIf="emailChanged">
+              <p >  You already registered with {{email}}  </p>
+            </div>
+
           </div>
+
         </div>
         <div class="columns">
           <div class="column">
@@ -49,8 +54,9 @@
           </div>
         </div>
 
-        <button routerLink="" class="button is-rounded is-success is-centered " type="submit" [disabled]="!(password() && form.valid)"
-                (click)="onSignUp()">Sign Up
+        <button class="button is-rounded is-success is-centered " type="submit" [disabled]="!(password() && form.valid && !emailExist)"
+                (click)="onSubmit()">Sign Up
+
         </button>
 
       </form>

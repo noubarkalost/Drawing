@@ -10,12 +10,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit{
+  emailExist: boolean = false
+  emailChanged: boolean = false
   avatarName: string = "gentelman"
   avatar = "avatar"
   userAvatar = []
   imageSRC: string = "assets/Avatars/gentelman.png";
   usersList: IUsers[] = [];
   usersListName = 'usersList'
+  email!: string;
   constructor(private storage: LocalstorageService, private router:Router) { }
   ngOnInit(): void {
     this.getUsers();
@@ -23,6 +26,7 @@ export class SignupComponent implements OnInit{
       this.router.navigate(['/Draw']).then(r=>r)
     }
     this.getAvatar()
+
   }
   getAvatar(){
    const avatars = this.storage.get('avatar')
@@ -39,11 +43,12 @@ export class SignupComponent implements OnInit{
       Validators.required,
       Validators.minLength(3)
     ]),
-    phoneNumber: new FormControl('', [Validators.required, Validators.pattern("0[0-9]")]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern("0[0-9]{8}")]),
     email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl('', [Validators.required, Validators.pattern("^(?=.{6,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$")]),
     confirmPassword: new FormControl('', Validators.required),
   })
+
 
   password() {
     const password = this.form.controls.password.value
@@ -59,7 +64,6 @@ export class SignupComponent implements OnInit{
       this.usersList = JSON.parse(users);
     }
   }
-
   onSignUp() {
     if(this.form.valid) {
       this.usersList.push(this.form.value);
@@ -71,6 +75,33 @@ export class SignupComponent implements OnInit{
       this.storage.set('avatar', usrAvatar )
     }
   }
+ onSubmit(){
+    this.checkExisting()
+   if(!this.emailExist){
+     this.onSignUp()
+     this.router.navigate(['/']).then(r=>r)
+
+   }
+   this.emailChanged = true
+   setTimeout(()=>{this.emailExist = false
+   },4000)
+
+ }
+
+  checkExisting() {
+    const existingEmail = this.form.controls.email.value
+     this.usersList.forEach(item => {
+      if(existingEmail === item.email){
+     this.emailExist = true
+        this.email = existingEmail
+    }
+      else{
+       this.emailExist = false
+      }
+      })
+
+
+        }
 
   changeImage(){
     if(this.imageSRC ===  "assets/Avatars/gentelman.png"){
