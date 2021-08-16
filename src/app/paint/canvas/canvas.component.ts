@@ -40,7 +40,9 @@ export class CanvasComponent implements OnInit {
   fillAudio: any = new Audio('./assets/sounds/fill.wav')
   userAvatar!: string | null;
   avatarList = []
-
+  buttonText: string = "Save"
+  editDisable: boolean = false;
+  showButton: string = 'none';
 
   constructor(private storage: LocalstorageService,  private router:Router) { }
 
@@ -48,6 +50,7 @@ export class CanvasComponent implements OnInit {
     if(this.storage.get('loggedInUser')?.length) {
       this.router.navigate(['/Draw']).then(r=>r)
     }
+
     this.getProjects();
     this.storage.get("usersList")
     const getAvatarList = this.storage.get('avatar')
@@ -83,7 +86,10 @@ export class CanvasComponent implements OnInit {
     }
   }
 
-
+onEdit(){
+    this.editDisable=true;
+  this.pointer='all';
+}
   onResetColor(): void {
     if (!this.isEmpty(this.circles)) {
       this.resetColors();
@@ -180,6 +186,9 @@ export class CanvasComponent implements OnInit {
     else{
       this.selectedSize = this.canvasSizes[2];
     }
+    this.showButton = 'block';
+    this.editDisable= false;
+    this.pointer = 'none';
 
   }
 
@@ -196,9 +205,13 @@ export class CanvasComponent implements OnInit {
     this.storage.removeAll()
     this.circles = [];
   }
+
   signOut(){
     this.storage.set('loggedInUser','');
     this.storage.set('userName', JSON.stringify(undefined));
-
   }
+
+
+
+
 }
