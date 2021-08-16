@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit {
   emailExist: boolean = false
   emailChanged: boolean = false
   avatarName: string = "gentelman"
@@ -19,21 +19,26 @@ export class SignupComponent implements OnInit{
   usersList: IUsers[] = [];
   usersListName = 'usersList'
   email!: string;
-  constructor(private storage: LocalstorageService, private router:Router) { }
+
+  constructor(private storage: LocalstorageService, private router: Router) {
+  }
+
   ngOnInit(): void {
     this.getUsers();
-    if(this.storage.get('loggedInUser')?.length) {
-      this.router.navigate(['/Draw']).then(r=>r)
+    if (this.storage.get('loggedInUser')?.length) {
+      this.router.navigate(['/Draw']).then(r => r)
     }
     this.getAvatar()
 
   }
-  getAvatar(){
-   const avatars = this.storage.get('avatar')
+
+  getAvatar() {
+    const avatars = this.storage.get('avatar')
     if (typeof avatars === "string") {
       this.userAvatar = JSON.parse(avatars)
     }
   }
+
   form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -53,62 +58,59 @@ export class SignupComponent implements OnInit{
   password() {
     const password = this.form.controls.password.value
     const confirmedPassword = this.form.controls.confirmPassword.value
-    if(password && confirmedPassword){
+    if (password && confirmedPassword) {
       return password === confirmedPassword;
     }
     return false
   }
+
   getUsers(): void {
     const users = this.storage.get(this.usersListName);
     if (users) {
       this.usersList = JSON.parse(users);
     }
   }
+
   onSignUp() {
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.usersList.push(this.form.value);
       // @ts-ignore
-      this.userAvatar.push({avatar: this.avatarName, name:this.form.controls.name.value});
+      this.userAvatar.push({avatar: this.avatarName, name: this.form.controls.name.value});
       const usersListStr = JSON.stringify(this.usersList)
       const usrAvatar = JSON.stringify(this.userAvatar)
       this.storage.set(this.usersListName, usersListStr)
-      this.storage.set('avatar', usrAvatar )
+      this.storage.set('avatar', usrAvatar)
     }
   }
- onSubmit(){
+
+  onSubmit() {
     this.checkExisting()
-   if(!this.emailExist){
-     this.onSignUp()
-     this.router.navigate(['/']).then(r=>r)
+    if (!this.emailExist) {
+      this.onSignUp()
+      this.router.navigate(['/']).then(r => r)
+    }
+    this.emailChanged = true
+    setTimeout(() => {
+      this.emailExist = false
+    }, 3000)
 
-   }
-   this.emailChanged = true
-   setTimeout(()=>{this.emailExist = false
-   },4000)
-
- }
+  }
 
   checkExisting() {
     const existingEmail = this.form.controls.email.value
-     this.usersList.forEach(item => {
-      if(existingEmail === item.email){
+    this.usersList.forEach(item => {
+      if (existingEmail === item.email) {
         this.emailExist = true
         this.email = existingEmail
-    }
-      // else{
-      //  this.emailExist = false
-      // }
-      })
+      }
+    })
+  }
 
-
-        }
-
-  changeImage(){
-    if(this.imageSRC ===  "assets/Avatars/gentelman.png"){
+  changeImage() {
+    if (this.imageSRC === "assets/Avatars/gentelman.png") {
       this.imageSRC = "assets/Avatars/lady.png"
       this.avatarName = "lady"
-    }
-    else{
+    } else {
       this.imageSRC = "assets/Avatars/gentelman.png"
       this.avatarName = "gentelman"
     }
